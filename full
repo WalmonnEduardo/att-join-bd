@@ -1,0 +1,28 @@
+create database ex2;
+use ex2;
+create table Filme(
+	id_filme int primary key,
+    titulo varchar(50),
+    genero varchar(20)
+);
+
+insert into Filme values
+(1,'Avatar','Ficção Cientifíca'),
+(2,'Titanic','Drama'),
+(3,'Inception','Ação'),
+(4,'Rei Leão','Animação');
+
+
+create table  Ingressos(
+	id_ingresso int primary key,
+    quantidade int,
+    id_filme int,
+    foreign key(id_filme) references Filme(id_filme)
+); 
+insert into Ingressos (id_ingresso, quantidade, id_filme) values
+(101, 150, 1),
+(102, 200, 3),
+(103, 120, 4);
+
+
+
