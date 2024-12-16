@@ -1,0 +1,35 @@
+create database ex1;
+use ex1;
+create table Turma(
+	id_turma int primary key,
+    nome varchar(100) not null
+);
+create table Professor(
+	id_professor int primary key,
+    nome varchar(100) not null,
+    telefone varchar(14) not null,
+    id_turma int,
+    foreign key(id_turma) references Turma(id_turma)
+);
+insert into Turma 
+values(1,'2 TDS'),
+(2,'3 TDS'),
+(3,'4 TDS');
+insert into Professor
+values(1,'João da Silva','+5545999125587',1),
+(2,'maria Silva','+5541997623580',2),
+(3,'Paulo Silva','+5545999125587',null);
+SELECT 
+    Professor.id_professor, 
+    Professor.nome AS professor_nome, 
+    Professor.telefone, 
+    Turma.id_turma, 
+    Turma.nome AS turma_nome
+FROM 
+    Turma
+RIGHT JOIN 
+    Professor
+ON 
+    Turma.id_turma = Professor.id_turma
+WHERE 
+    Professor.nome = 'Paulo Silva';
