@@ -1,35 +1,22 @@
-create database ex1;
-use ex1;
-create table Turma(
-	id_turma int primary key,
-    nome varchar(100) not null
+CREATE DATABASE aula;
+USE aula;
+CREATE TABLE Turma(
+	id_turma INT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL
 );
-create table Professor(
-	id_professor int primary key,
-    nome varchar(100) not null,
-    telefone varchar(14) not null,
-    id_turma int,
-    foreign key(id_turma) references Turma(id_turma)
+CREATE TABLE Professor(
+	id_professor INT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	telefone VARCHAR(100) NOT NULL,
+	id_turma INT,
+	FOREIGN KEY (id_turma) REFERENCES Turma(id_turma)
 );
-insert into Turma 
-values(1,'2 TDS'),
-(2,'3 TDS'),
-(3,'4 TDS');
-insert into Professor
-values(1,'João da Silva','+5545999125587',1),
-(2,'maria Silva','+5541997623580',2),
-(3,'Paulo Silva','+5545999125587',null);
-SELECT 
-    Professor.id_professor, 
-    Professor.nome AS professor_nome, 
-    Professor.telefone, 
-    Turma.id_turma, 
-    Turma.nome AS turma_nome
-FROM 
-    Turma
-RIGHT JOIN 
-    Professor
-ON 
-    Turma.id_turma = Professor.id_turma
-WHERE 
-    Professor.nome = 'Paulo Silva';
+INSERT INTO Turma VALUES
+(1, "2ano"),
+(2, "3ano"),
+(3, "4ano");
+INSERT INTO Professor VALUES
+(1, "João da Silva", "+5545999125586", 1),
+(2, "Maria Silva", "+55419997623580", 2),
+(3, "Paulo Silva", "+5545999125587", NULL);
+SELECT Professor.nome, Professor.telefone, Turma.nome FROM Turma RIGHT JOIN Professor ON Professor.id_turma = Turma.id_turma;
