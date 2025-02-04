@@ -1,0 +1,41 @@
+CREATE DATABASE restaurante;
+USE restaurante;
+CREATE TABLE pratos(
+	numero INT PRIMARY KEY NOT NULL,
+    nome CHAR(50) NOT NULL,
+    preco FLOAT NOT NULL
+);
+CREATE TABLE bebidas(
+	numero INT PRIMARY KEY NOT NULL,
+    nome CHAR(50) NOT NULL,
+    preco FLOAT NOT NULL
+);
+INSERT INTO pratos VALUES
+(1,"Pizza Margherita",25.00),
+(2,"Hambúrguer",20.00),
+(3,"Lasanha",30.00);
+INSERT INTO bebidas VALUES
+(1,"Refrigerante lata 350ml",5.00),
+(2,"Suco Natural 600ml",8.00),
+(3,"Água",3.00);
+SELECT p.nome, b.nome,  b.preco+p.preco FROM pratos p CROSS JOIN bebidas b;
+=============================================================================================================
+CREATE DATABASE loja;
+USE loja;
+CREATE TABLE produtos(
+	numero INT PRIMARY KEY NOT NULL,
+    nome CHAR(30) NOT NULL
+);
+CREATE TABLE desconto(
+	numero INT PRIMARY KEY NOT NULL,
+    percentual CHAR(5) NOT NULL
+);
+INSERT INTO produtos VALUES
+(1,"Camiseta"),
+(2,"Calça"),
+(3,"Jaqueta");
+INSERT INTO desconto VALUES
+(1,"5%"),
+(2,"10%"),
+(3,"15%");
+SELECT p.nome, d.percentual FROM produtos p CROSS JOIN desconto d;
