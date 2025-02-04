@@ -1,28 +1,29 @@
-create database ex2;
-use ex2;
-create table Filme(
-	id_filme int primary key,
-    titulo varchar(50),
-    genero varchar(20)
+CREATE DATABASE Filmes;
+USE Filmes;
+CREATE TABLE Filmes(
+	id_filmes INT PRIMARY KEY,
+	titulo VARCHAR(50),
+	genero VARCHAR(20)
 );
-
-insert into Filme values
-(1,'Avatar','Ficção Cientifíca'),
-(2,'Titanic','Drama'),
-(3,'Inception','Ação'),
-(4,'Rei Leão','Animação');
-
-
-create table  Ingressos(
-	id_ingresso int primary key,
-    quantidade int,
-    id_filme int,
-    foreign key(id_filme) references Filme(id_filme)
-); 
-insert into Ingressos (id_ingresso, quantidade, id_filme) values
-(101, 150, 1),
-(102, 200, 3),
-(103, 120, 4);
-
-
-
+CREATE TABLE Ingresso_Vendidos(
+	id_ingresso INT PRIMARY KEY NOT NULL,
+	id_filmes INT NOT NULL,
+	quantidade INT NOT NULL
+);
+INSERT INTO Filmes (id_filmes, titulo, genero) VALUES
+(1, "Avatar", "Ficção Cientifica"),
+(2, "Titanic", "Drama"),
+(3, "Interception", "Ação"),
+(4, "O Rei Leão", "Animação");
+INSERT INTO Ingresso_Vendidos (id_ingresso, id_filmes, quantidade) VALUES
+(101, 1, 150),
+(102, 3, 200),
+(103, 4, 120),
+(104, 2, 130);
+SELECT f.titulo, f.Genero, iv.quantidade
+FROM Filmes AS f
+LEFT JOIN Ingresso_Vendidos AS iv ON f.id_filmes = iv.id_filmes
+UNION
+SELECT f.titulo, f.Genero, iv.quantidade
+FROM Filmes AS f
+RIGHT JOIN Ingresso_Vendidos AS iv ON f.id_filmes = iv.id_filmes;
